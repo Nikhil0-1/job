@@ -1,0 +1,278 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  JOB_SEEKER
+  EMPLOYER
+  ADMIN
+}
+
+enum ApplicationStatus {
+  APPLIED
+  UNDER_REVIEW
+  SHORTLISTED
+  SELECTED
+  REJECTED
+}
+
+enum JobStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+  EXPIRED
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  FREELANCE
+  REMOTE
+}
+
+enum ExperienceLevel {
+  FRESHER
+  JUNIOR
+  MID
+  SENIOR
+  LEAD
+  EXECUTIVE
+}
+
+enum SalaryPeriod {
+  HOURLY
+  MONTHLY
+  YEARLY
+}
+
+enum WorkMode {
+  ONSITE
+  REMOTE
+  HYBRID
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(JOB_SEEKER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  employerProfile EmployerProfile?
+  jobSeekerProfile JobSeekerProfile?
+  notifications   Notification[]
+  passwordResets  PasswordReset[]
+
+  @@map("users")
+}
+
+model EmployerProfile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  companyName String
+  phone       String?
+  industry    String?
+  companyType String?
+  isProfileComplete Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company Company?
+
+  @@map("employer_profiles")
+}
+
+model Company {
+  id              String   @id @default(uuid())
+  employerProfileId String @unique
+  name            String
+  logo            String?
+  about           String?
+  industry        String?
+  companySize     String?
+  website         String?
+  email           String?
+  phone           String?
+  address         String?
+  city            String?
+  state           String?
+  country         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  employerProfile EmployerProfile @relation(fields: [employerProfileId], references: [id], onDelete: Cascade)
+  jobs            Job[]
+
+  @@map("companies")
+}
+
+model JobSeekerProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  firstName String?
+  lastName  String?
+  phone     String?
+  location  String?
+  headline  String?
+  about     String?
+  skills    String[]
+  resume    String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  applications Application[]
+  savedJobs    SavedJob[]
+
+  @@map("job_seeker_profiles")
+}
+
+model JobCategory {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  slug        String   @unique
+  icon        String?
+  description String?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  jobs Job[]
+
+  @@map("job_categories")
+}
+
+model Job {
+  id              String          @id @default(uuid())
+  companyId       String
+  categoryId      String?
+  title           String
+  department      String?
+  jobType         JobType         @default(FULL_TIME)
+  workMode        WorkMode        @default(ONSITE)
+  country         String?
+  state           String?
+  city            String?
+  minSalary       Float?
+  maxSalary       Float?
+  salaryPeriod    SalaryPeriod    @default(MONTHLY)
+  experience      ExperienceLevel @default(JUNIOR)
+  education       String?
+  skills          String[]
+  vacancies       Int             @default(1)
+  description     String
+  responsibilities String?
+  requirements    String?
+  benefits        String?
+  deadline        DateTime?
+  status          JobStatus       @default(ACTIVE)
+  views           Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  company      Company        @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  category     JobCategory?   @relation(fields: [categoryId], references: [id])
+  applications Application[]
+  savedJobs    SavedJob[]
+
+  @@index([status, createdAt])
+  @@index([companyId])
+  @@map("jobs")
+}
+
+model Application {
+  id               String            @id @default(uuid())
+  jobId            String
+  jobSeekerProfileId String
+  coverLetter      String?
+  resumeUrl        String?
+  status           ApplicationStatus @default(APPLIED)
+  appliedAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  // Relations
+  job              Job                        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  jobSeekerProfile JobSeekerProfile           @relation(fields: [jobSeekerProfileId], references: [id], onDelete: Cascade)
+  statusHistory    ApplicationStatusHistory[]
+
+  @@unique([jobId, jobSeekerProfileId])
+  @@index([jobId])
+  @@index([jobSeekerProfileId])
+  @@map("applications")
+}
+
+model ApplicationStatusHistory {
+  id            String            @id @default(uuid())
+  applicationId String
+  status        ApplicationStatus
+  note          String?
+  changedAt     DateTime          @default(now())
+
+  // Relations
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@map("application_status_history")
+}
+
+model SavedJob {
+  id               String   @id @default(uuid())
+  jobSeekerProfileId String
+  jobId            String
+  savedAt          DateTime @default(now())
+
+  // Relations
+  jobSeekerProfile JobSeekerProfile @relation(fields: [jobSeekerProfileId], references: [id], onDelete: Cascade)
+  job              Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([jobSeekerProfileId, jobId])
+  @@map("saved_jobs")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  type      String   @default("INFO")
+  link      String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_resets")
+}

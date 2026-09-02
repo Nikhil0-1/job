@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+.next/
+dist/
+out/
+
+# Environment files
+.env
+.env.local
+.env*.local
+!.env.example
+
+# OS & System
+.DS_Store
+Thumbs.db
