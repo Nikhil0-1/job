@@ -189,17 +189,23 @@ export default function EmployerLayout({ children }: { children: React.ReactNode
         </header>
 
         {/* Page content */}
-        <main style={{ flex: 1, padding: '2rem 1.5rem', maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+        <main className="dashboard-main">
           {children}
         </main>
       </div>
 
       <style jsx global>{`
+        .dashboard-main {
+          flex: 1; padding: 2rem 1.5rem; max-width: 1200px; width: 100%; margin: 0 auto;
+        }
         @media (max-width: 900px) {
           .sidebar { transform: translateX(-100%); }
           .sidebar.open { transform: translateX(0); }
           .main-content { margin-left: 0 !important; }
           .page-title { display: none; }
+        }
+        @media (max-width: 640px) {
+          .dashboard-main { padding: 1.5rem 1rem; }
         }
         @media (min-width: 901px) {
           .mobile-menu-btn { display: none !important; }

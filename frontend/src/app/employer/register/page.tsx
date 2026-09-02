@@ -136,7 +136,7 @@ export default function EmployerRegisterPage() {
               </div>
 
               {/* Industry & Company Type */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+              <div className="form-grid-2" style={{ gap: '1rem', marginBottom: '1.25rem' }}>
                 <div>
                   <label className="form-label">Industry</label>
                   <select className="form-select" {...register('industry')}>
@@ -218,9 +218,13 @@ export default function EmployerRegisterPage() {
       </div>
 
       <style jsx global>{`
+        .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
         @media (max-width: 768px) {
           .auth-grid { grid-template-columns: 1fr !important; }
           .auth-brand { display: none !important; }
+        }
+        @media (max-width: 480px) {
+          .form-grid-2 { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

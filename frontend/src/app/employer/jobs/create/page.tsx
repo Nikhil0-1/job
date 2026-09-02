@@ -141,7 +141,7 @@ export default function CreateJobPage() {
                 <input className={`form-input ${errors.title ? 'error' : ''}`} placeholder="e.g. Senior Software Developer" {...register('title')} />
                 {errors.title && <p className="form-error">{errors.title.message}</p>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="grid-2" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Category</label>
                   <select className="form-select" {...register('categoryId')}>
@@ -154,7 +154,7 @@ export default function CreateJobPage() {
                   <input className="form-input" placeholder="e.g. Engineering, Sales" {...register('department')} />
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="grid-2" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Job Type <span className="required">*</span></label>
                   <select className={`form-select ${errors.jobType ? 'error' : ''}`} {...register('jobType')}>
@@ -179,7 +179,7 @@ export default function CreateJobPage() {
 
             {/* Location */}
             <FormSection title="Location">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Country</label>
                   <input className="form-input" placeholder="India" {...register('country')} />
@@ -197,7 +197,7 @@ export default function CreateJobPage() {
 
             {/* Salary */}
             <FormSection title="Compensation">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Min Salary (₹)</label>
                   <input type="number" className="form-input" placeholder="500000" {...register('minSalary', { valueAsNumber: true })} />
@@ -220,7 +220,7 @@ export default function CreateJobPage() {
 
             {/* Requirements */}
             <FormSection title="Requirements">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Experience Level <span className="required">*</span></label>
                   <select className="form-select" {...register('experience')}>

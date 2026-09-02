@@ -149,7 +149,7 @@ export default function EditJobPage() {
                 <input className={`form-input ${errors.title ? 'error' : ''}`} {...register('title')} />
                 {errors.title && <p className="form-error">{errors.title.message}</p>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="grid-2" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Category</label>
                   <select className="form-select" {...register('categoryId')}>
@@ -162,7 +162,7 @@ export default function EditJobPage() {
                   <input className="form-input" {...register('department')} />
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Job Type</label>
                   <select className="form-select" {...register('jobType')}>
@@ -195,7 +195,7 @@ export default function EditJobPage() {
             </FormSection>
 
             <FormSection title="Location">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Country</label>
                   <input className="form-input" {...register('country')} />
@@ -212,7 +212,7 @@ export default function EditJobPage() {
             </FormSection>
 
             <FormSection title="Compensation & Requirements">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="grid-3" style={{ gap: '1rem' }}>
                 <div>
                   <label className="form-label">Min Salary (₹)</label>
                   <input type="number" className="form-input" {...register('minSalary', { valueAsNumber: true })} />
