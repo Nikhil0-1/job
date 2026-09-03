@@ -44,7 +44,7 @@ export default function HowItWorksPage() {
         {/* For Seekers */}
         <section className="section" style={{ background: 'white' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--primary-50)', color: 'var(--primary)', padding: '0.375rem 1rem', borderRadius: 100, fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', border: '1px solid var(--primary-100)' }}>
                   <Smartphone size={14} /> For Job Seekers
@@ -95,7 +95,7 @@ export default function HowItWorksPage() {
         {/* For Employers */}
         <section className="section" style={{ background: 'var(--bg)' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
                 <div style={{ background: '#D1FAE5', border: '1px solid #A7F3D0', borderRadius: 24, padding: '2.5rem', textAlign: 'center' }}>
                   <div style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>🏢</div>
@@ -145,7 +145,7 @@ export default function HowItWorksPage() {
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h2 style={{ marginBottom: '1rem' }}>Frequently Asked Questions</h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }} className="faq-grid">
+            <div className="grid-2 faq-grid" style={{ gap: '3rem', alignItems: 'start' }}>
               <div>
                 <h3 style={{ marginBottom: '1.5rem', fontSize: '1.125rem', color: 'var(--primary)' }}>
                   <Smartphone size={18} style={{ verticalAlign: 'middle', marginRight: 8 }} />

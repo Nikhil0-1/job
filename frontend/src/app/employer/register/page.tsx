@@ -105,7 +105,7 @@ export default function EmployerRegisterPage() {
       </div>
 
       {/* Right — Form */}
-      <div style={{ padding: '3rem 2.5rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ padding: '2rem 1.5rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', justifyItems: 'center', justifyContent: 'center' }}>
         <div style={{ maxWidth: 480, width: '100%', margin: '0 auto' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Create Employer Account</h1>

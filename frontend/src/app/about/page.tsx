@@ -28,7 +28,7 @@ export default function AboutPage() {
         {/* Mission */}
         <section className="section" style={{ background: 'white' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--primary-50)', color: 'var(--primary)', padding: '0.375rem 1rem', borderRadius: 100, fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem' }}>
                   <Target size={14} /> Our Mission
@@ -42,7 +42,7 @@ export default function AboutPage() {
                 </p>
               </motion.div>
               <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="grid-2" style={{ gap: '1.5rem' }}>
                   {[
                     { icon: <Target size={24} />, title: 'Mission-Driven', desc: 'Connecting talent with opportunity across India' },
                     { icon: <Users size={24} />, title: 'Community First', desc: 'Built for job seekers and employers equally' },
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 Questions, feedback, or partnership inquiries? We'd love to hear from you.
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', maxWidth: 800, margin: '0 auto' }} className="contact-grid">
+            <div className="grid-2 contact-grid" style={{ gap: '3rem', maxWidth: 800, margin: '0 auto' }}>
               <div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   {[

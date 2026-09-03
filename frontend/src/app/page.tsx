@@ -111,7 +111,7 @@ export default function HomePage() {
           </div>
 
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               {/* Left: Content */}
               <motion.div initial="hidden" animate="visible" variants={stagger}>
                 <motion.div variants={fadeUp}>
@@ -137,8 +137,8 @@ export default function HomePage() {
                 </motion.p>
 
                 {/* Dual CTA — NEVER MIX JOB SEEKER AND EMPLOYER ACTIONS */}
-                <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+                <motion.div variants={fadeUp} className="hero-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
+                  <div className="hero-action-item" style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem', flex: '1 1 auto' }}>
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Looking for a Job?</span>
                     <a
                       href={APP_CONFIG.PLAY_STORE_URL}
@@ -150,7 +150,7 @@ export default function HomePage() {
                       Find Jobs — Get the App
                     </a>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+                  <div className="hero-action-item" style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem', flex: '1 1 auto' }}>
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Hiring Candidates?</span>
                     <Link href="/employer/register" className="btn btn-secondary btn-xl">
                       <Briefcase size={20} />
@@ -188,9 +188,7 @@ export default function HomePage() {
           </div>
 
           <style jsx>{`
-            @media (max-width: 768px) {
-              .hero-illustration { display: none !important; }
-            }
+            .hero-illustration { width: 100%; display: flex; justify-content: center; }
           `}</style>
         </section>
 
@@ -259,7 +257,7 @@ export default function HomePage() {
         {/* ========== SECTION 3: HIRE THE RIGHT TALENT ========== */}
         <section className="section" style={{ background: 'var(--bg)' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               {/* Employer illustration */}
               <motion.div
                 initial={{ opacity: 0, x: -32 }}
@@ -317,10 +315,7 @@ export default function HomePage() {
           </div>
 
           <style jsx>{`
-            @media (max-width: 768px) {
-              .employer-illustration { display: none !important; }
-              section > div > div:last-child { grid-column: 1 !important; }
-            }
+            .employer-illustration { width: 100%; display: flex; justify-content: center; }
           `}</style>
         </section>
 
@@ -340,7 +335,7 @@ export default function HomePage() {
               </motion.p>
             </motion.div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
+            <div className="responsive-split" style={{ alignItems: 'start' }}>
               {/* Job Seeker Flow */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -435,7 +430,7 @@ export default function HomePage() {
         {/* ========== SECTION 5: APP PROMO ========== */}
         <section className="section" style={{ background: 'linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 50%, #2563EB 100%)' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div className="responsive-split">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -492,7 +487,7 @@ export default function HomePage() {
             </div>
           </div>
           <style jsx>{`
-            @media (max-width: 768px) { .app-phones { display: none !important; } }
+            .app-phones { width: 100%; display: flex; justify-content: center; }
           `}</style>
         </section>
 
@@ -653,7 +648,8 @@ export default function HomePage() {
 
 function HeroIllustration() {
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 500 }}>
+    <div style={{ padding: '2rem 1rem', width: '100%' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: 500, margin: '0 auto' }}>
       {/* Main card */}
       <div style={{ background: 'white', borderRadius: 20, padding: '1.5rem', boxShadow: '0 20px 60px rgba(37,99,235,0.12)', border: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
@@ -691,8 +687,8 @@ function HeroIllustration() {
         animate={{ y: [0, -8, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
         style={{
-          position: 'absolute', top: -24, right: -24,
-          background: 'white', borderRadius: 14, padding: '0.875rem 1.125rem',
+          position: 'absolute', top: -16, right: -12,
+          background: 'white', borderRadius: 14, padding: '0.75rem 1rem',
           boxShadow: '0 12px 32px rgba(0,0,0,0.1)',
           border: '1px solid var(--border)',
           display: 'flex', alignItems: 'center', gap: '0.625rem',
@@ -712,8 +708,8 @@ function HeroIllustration() {
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: 1 }}
         style={{
-          position: 'absolute', bottom: -20, left: -20,
-          background: 'var(--primary)', borderRadius: 14, padding: '0.75rem 1.125rem',
+          position: 'absolute', bottom: -16, left: -12,
+          background: 'var(--primary)', borderRadius: 14, padding: '0.625rem 1rem',
           boxShadow: '0 12px 32px rgba(37,99,235,0.25)',
           display: 'flex', alignItems: 'center', gap: '0.625rem',
         }}
@@ -721,6 +717,7 @@ function HeroIllustration() {
         <Bell size={18} color="white" />
         <span style={{ fontWeight: 600, fontSize: '0.875rem', color: 'white' }}>12 new jobs today</span>
       </motion.div>
+      </div>
     </div>
   );
 }
@@ -743,7 +740,7 @@ function EmployerIllustration() {
             <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)' }}>{c.name}</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{c.role}</div>
           </div>
-          <span style={{ background: c.bg, color: c.color, padding: '0.25rem 0.625rem', borderRadius: 100, fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap' }}>{c.status}</span>
+          <span style={{ background: c.bg, color: c.color, padding: '0.25rem 0.625rem', borderRadius: 100, fontSize: '0.75rem', fontWeight: 600 }}>{c.status}</span>
         </div>
       ))}
     </div>
@@ -753,7 +750,7 @@ function EmployerIllustration() {
 function AppPhoneIllustration() {
   return (
     <div style={{
-      width: 260, height: 480,
+      width: '100%', maxWidth: 260, height: 480,
       background: '#1E293B',
       borderRadius: 40,
       padding: '2rem 1.25rem',

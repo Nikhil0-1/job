@@ -38,6 +38,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -300,6 +301,24 @@ a:hover { color: var(--primary-dark); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+.responsive-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .responsive-split { gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .responsive-split { 
+    grid-template-columns: 1fr !important;
+    gap: 3rem;
+  }
+}
 
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -639,6 +658,7 @@ img, svg, video, iframe {
 body {
   overflow-x: hidden;
   width: 100%;
+  position: relative;
 }
 
 /* Responsive grid overrides */
@@ -679,6 +699,8 @@ body {
   .container { padding: 0 0.875rem; }
   .btn { width: 100%; justify-content: center; }
   .btn-sm { width: auto; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-action-item { width: 100%; }
 }
 
 @media (max-width: 360px) {

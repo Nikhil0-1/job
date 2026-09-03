@@ -90,7 +90,7 @@ export default function ForEmployersPage() {
               <h2 style={{ marginBottom: '1rem' }}>Simple, Transparent Pricing</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem' }}>Start for free. Scale as you grow.</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', maxWidth: 800, margin: '0 auto' }} className="pricing-grid">
+            <div className="grid-2 pricing-grid" style={{ gap: '2rem', maxWidth: 800, margin: '0 auto' }}>
               {[
                 {
                   name: 'Free',
